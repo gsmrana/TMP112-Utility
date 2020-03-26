@@ -1,4 +1,4 @@
 # TMP112 Utility
-TI's TMP112 temperature sensor data conversion utility
+Texas Instrument's TMP112 temperature sensor raw data conversion utility
 
-![TMP112 Utility](https://user-images.githubusercontent.com/51051655/65448491-b8c74200-de5a-11e9-94e3-b8150636f5e7.png)
+![TMP112 Utility v1 1 0](https://user-images.githubusercontent.com/51051655/77689327-ae356300-6fcb-11ea-953b-fb213ada9e05.png)
