@@ -18,10 +18,11 @@ namespace TMP112_Utility
 
         const double TMP112CelciusConst = 0.0625; // 1/16
         const double FahrenheitConst = 1.8;       // 9/5
+
         short _digitalValue = 0;
         double _celciusValue = 0;
         double _fahrenheitValue = 0;
-        short _stMemFormat = 0;
+        short _memFormat12bitFx10 = 0;
 
         #endregion
 
@@ -36,6 +37,10 @@ namespace TMP112_Utility
         {
             try
             {
+                comboBoxRawSampleBits.Items.AddRange(Enum.GetNames(typeof(RawSampleBits)));
+                if (comboBoxRawSampleBits.Items.Count > 0)
+                    comboBoxRawSampleBits.SelectedIndex = 0;
+
                 labelException.Text = "";
                 textBoxTempCelcius.Text = "-40";
                 ConvertNumbers(InputType.TempCelcius);
@@ -63,13 +68,36 @@ namespace TMP112_Utility
 
         private void DisplayNumbers(InputType inputtype)
         {
-            if (inputtype != InputType.DigitalHex) textBoxDigitalHex.Text = _digitalValue.ToString("X4");
+            if (inputtype != InputType.DigitalHex) textBoxDigitalHex.Text = _digitalValue.ToString("X3");
             if (inputtype != InputType.DigitalDecimal) textBoxDigitalDecimal.Text = _digitalValue.ToString();
-            if (inputtype != InputType.DigitalBinary) textBoxDigitalBinary.Text = Convert.ToString(_digitalValue, 2);
+            if (inputtype != InputType.DigitalBinary) textBoxDigitalBinary.Text = Convert.ToString(_digitalValue, 2).PadLeft(16, '0');
             if (inputtype != InputType.TempCelcius) textBoxTempCelcius.Text = _celciusValue.ToString("0.##");
             if (inputtype != InputType.TempFahrenheit) textBoxTempFahrenheit.Text = _fahrenheitValue.ToString("0.##");
-            if (inputtype != InputType.StFormatHex) textBoxStFormatHex.Text = _stMemFormat.ToString("X4");
-            if (inputtype != InputType.StFormatDec) textBoxStFormatDec.Text = _stMemFormat.ToString();
+            if (inputtype != InputType.StFormatHex) textBoxStFormatHex.Text = _memFormat12bitFx10.ToString("X3");
+            if (inputtype != InputType.StFormatDec) textBoxStFormatDec.Text = Digital12BitTo16Bit(_memFormat12bitFx10).ToString();
+        }
+
+        private static double Tmp112DigitalToCelcius(short digitalValue, int samplebits)
+        {
+            var bitshift = 16 - samplebits;
+            return ((short)(digitalValue << bitshift) * TMP112CelciusConst) / Math.Pow(2, bitshift);
+        }
+
+        private static short CelciusToTMP112Digital(double celciusValue, int samplebits)
+        {
+            var bitmask = (short)(Math.Pow(2, samplebits) - 1);
+            var databits = (short)(celciusValue / TMP112CelciusConst);
+            return (short)(databits & bitmask);
+        }
+
+        private static short Digital12BitTo16Bit(short value12bit)
+        {
+            return (short)((short)(value12bit << 4) >> 4);
+        }
+
+        private static short Digital16BitTo12Bit(short value16bit)
+        {
+            return (short)(value16bit & 0x0FFF);
         }
 
         private void ConvertNumbers(InputType inputtype)
@@ -80,50 +108,57 @@ namespace TMP112_Utility
                 ClearNumbers(inputtype);
                 Debug.WriteLine("InputType: " + inputtype);
 
+                int samplebits = 0;
+                var sampletype = (RawSampleBits)comboBoxRawSampleBits.SelectedIndex;
+                if (sampletype == RawSampleBits.BITS_12) samplebits = 12;
+                else if (sampletype == RawSampleBits.BITS_13) samplebits = 13;
+
                 if (inputtype == InputType.DigitalHex)
                 {
                     _digitalValue = Convert.ToInt16(textBoxDigitalHex.Text, 16);
-                    _celciusValue = _digitalValue * TMP112CelciusConst;
+                    _celciusValue = Tmp112DigitalToCelcius(_digitalValue, samplebits);
                     _fahrenheitValue = (_celciusValue * FahrenheitConst) + 32;
                 }
-                if (inputtype == InputType.DigitalDecimal)
+                else if (inputtype == InputType.DigitalDecimal)
                 {
                     _digitalValue = Convert.ToInt16(textBoxDigitalDecimal.Text, 10);
-                    _celciusValue = _digitalValue * TMP112CelciusConst;
+                    _celciusValue = Tmp112DigitalToCelcius(_digitalValue, samplebits);
                     _fahrenheitValue = (_celciusValue * FahrenheitConst) + 32;
                 }
                 else if (inputtype == InputType.DigitalBinary)
                 {
                     _digitalValue = Convert.ToInt16(textBoxDigitalBinary.Text, 2);
-                    _celciusValue = _digitalValue * TMP112CelciusConst;
+                    _celciusValue = Tmp112DigitalToCelcius(_digitalValue, samplebits);
                     _fahrenheitValue = (_celciusValue * FahrenheitConst) + 32;
                 }
                 else if (inputtype == InputType.TempCelcius)
                 {
                     _celciusValue = double.Parse(textBoxTempCelcius.Text);
                     _fahrenheitValue = (_celciusValue * FahrenheitConst) + 32;
-                    _digitalValue = (short)(_celciusValue / TMP112CelciusConst);
+                    _digitalValue = CelciusToTMP112Digital(_celciusValue, samplebits);
                 }
                 else if (inputtype == InputType.TempFahrenheit)
                 {
                     _fahrenheitValue = double.Parse(textBoxTempFahrenheit.Text);
                     _celciusValue = (_fahrenheitValue - 32) / FahrenheitConst;
-                    _digitalValue = (short)(_celciusValue / TMP112CelciusConst);
+                    _digitalValue = CelciusToTMP112Digital(_celciusValue, samplebits);
                 }
                 else if (inputtype == InputType.StFormatHex)
                 {
-                    _fahrenheitValue = Convert.ToInt16(textBoxStFormatHex.Text, 16) / 10.0;
+                    var fahrenheitX10 = Convert.ToInt16(textBoxStFormatHex.Text, 16);
+                    _fahrenheitValue = Digital12BitTo16Bit(fahrenheitX10) / 10.0;
                     _celciusValue = (_fahrenheitValue - 32) / FahrenheitConst;
-                    _digitalValue = (short)(_celciusValue / TMP112CelciusConst);
+                    _digitalValue = CelciusToTMP112Digital(_celciusValue, samplebits);
                 }
                 else if (inputtype == InputType.StFormatDec)
                 {
-                    _fahrenheitValue = int.Parse(textBoxStFormatDec.Text) / 10.0;
+                    var fahrenheitX10 = Convert.ToInt16(textBoxStFormatDec.Text, 10);
+                    _fahrenheitValue = Digital12BitTo16Bit(fahrenheitX10) / 10.0;
                     _celciusValue = (_fahrenheitValue - 32) / FahrenheitConst;
-                    _digitalValue = (short)(_celciusValue / TMP112CelciusConst);
+                    _digitalValue = CelciusToTMP112Digital(_celciusValue, samplebits);
                 }
 
-                _stMemFormat = (short)(_fahrenheitValue * 10);
+                _memFormat12bitFx10 = Digital16BitTo12Bit((short)(_fahrenheitValue * 10));
                 DisplayNumbers(inputtype);
             }
             catch (Exception ex)
@@ -171,8 +206,18 @@ namespace TMP112_Utility
             ConvertNumbers(InputType.StFormatDec);
         }
 
-        #endregion
+        private void ComboBoxRawSampleBits_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ConvertNumbers(InputType.DigitalHex);
+        }
 
+        #endregion
+    }
+
+    public enum RawSampleBits
+    {
+        BITS_12,
+        BITS_13
     }
 
     public enum InputType

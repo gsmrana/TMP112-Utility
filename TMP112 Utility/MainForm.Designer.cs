@@ -42,21 +42,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxStFormatHex = new System.Windows.Forms.TextBox();
             this.textBoxStFormatDec = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxRawSampleBits = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Location = new System.Drawing.Point(9, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "16 bit Sample 0x";
+            this.label1.Text = "Raw Sample 0x";
             // 
             // textBoxDigitalHex
             // 
             this.textBoxDigitalHex.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxDigitalHex.Location = new System.Drawing.Point(102, 18);
+            this.textBoxDigitalHex.Location = new System.Drawing.Point(99, 39);
             this.textBoxDigitalHex.Name = "textBoxDigitalHex";
             this.textBoxDigitalHex.Size = new System.Drawing.Size(66, 20);
             this.textBoxDigitalHex.TabIndex = 0;
@@ -66,7 +69,7 @@
             // textBoxDigitalBinary
             // 
             this.textBoxDigitalBinary.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxDigitalBinary.Location = new System.Drawing.Point(102, 44);
+            this.textBoxDigitalBinary.Location = new System.Drawing.Point(99, 65);
             this.textBoxDigitalBinary.Name = "textBoxDigitalBinary";
             this.textBoxDigitalBinary.Size = new System.Drawing.Size(162, 20);
             this.textBoxDigitalBinary.TabIndex = 2;
@@ -76,7 +79,7 @@
             // textBoxTempCelcius
             // 
             this.textBoxTempCelcius.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxTempCelcius.Location = new System.Drawing.Point(102, 70);
+            this.textBoxTempCelcius.Location = new System.Drawing.Point(99, 91);
             this.textBoxTempCelcius.Name = "textBoxTempCelcius";
             this.textBoxTempCelcius.Size = new System.Drawing.Size(162, 20);
             this.textBoxTempCelcius.TabIndex = 3;
@@ -86,16 +89,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 47);
+            this.label2.Location = new System.Drawing.Point(9, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "16 bit sample 0b";
+            this.label2.Text = "Raw Sample 0b";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 73);
+            this.label3.Location = new System.Drawing.Point(9, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 7;
@@ -104,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 99);
+            this.label4.Location = new System.Drawing.Point(9, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 13);
             this.label4.TabIndex = 8;
@@ -113,7 +116,7 @@
             // textBoxTempFahrenheit
             // 
             this.textBoxTempFahrenheit.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxTempFahrenheit.Location = new System.Drawing.Point(102, 96);
+            this.textBoxTempFahrenheit.Location = new System.Drawing.Point(99, 117);
             this.textBoxTempFahrenheit.Name = "textBoxTempFahrenheit";
             this.textBoxTempFahrenheit.Size = new System.Drawing.Size(162, 20);
             this.textBoxTempFahrenheit.TabIndex = 4;
@@ -123,9 +126,9 @@
             // labelException
             // 
             this.labelException.ForeColor = System.Drawing.Color.DarkRed;
-            this.labelException.Location = new System.Drawing.Point(3, 152);
+            this.labelException.Location = new System.Drawing.Point(12, 173);
             this.labelException.Name = "labelException";
-            this.labelException.Size = new System.Drawing.Size(261, 13);
+            this.labelException.Size = new System.Drawing.Size(249, 31);
             this.labelException.TabIndex = 9;
             this.labelException.Text = "Error Message";
             this.labelException.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,7 +136,7 @@
             // textBoxDigitalDecimal
             // 
             this.textBoxDigitalDecimal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxDigitalDecimal.Location = new System.Drawing.Point(174, 18);
+            this.textBoxDigitalDecimal.Location = new System.Drawing.Point(171, 39);
             this.textBoxDigitalDecimal.Name = "textBoxDigitalDecimal";
             this.textBoxDigitalDecimal.Size = new System.Drawing.Size(90, 20);
             this.textBoxDigitalDecimal.TabIndex = 1;
@@ -143,16 +146,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 125);
+            this.label5.Location = new System.Drawing.Point(9, 146);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 13);
+            this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "ST Mem Format";
+            this.label5.Text = "12 bit (°Fx10)";
             // 
             // textBoxStFormatHex
             // 
             this.textBoxStFormatHex.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxStFormatHex.Location = new System.Drawing.Point(102, 122);
+            this.textBoxStFormatHex.Location = new System.Drawing.Point(99, 143);
             this.textBoxStFormatHex.Name = "textBoxStFormatHex";
             this.textBoxStFormatHex.Size = new System.Drawing.Size(66, 20);
             this.textBoxStFormatHex.TabIndex = 10;
@@ -162,18 +165,49 @@
             // textBoxStFormatDec
             // 
             this.textBoxStFormatDec.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxStFormatDec.Location = new System.Drawing.Point(174, 122);
+            this.textBoxStFormatDec.Location = new System.Drawing.Point(171, 143);
             this.textBoxStFormatDec.Name = "textBoxStFormatDec";
             this.textBoxStFormatDec.Size = new System.Drawing.Size(90, 20);
             this.textBoxStFormatDec.TabIndex = 12;
             this.textBoxStFormatDec.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxStFormatDec.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxStFormatDec_KeyUp);
             // 
-            // Form1
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Raw Sample Bits";
+            // 
+            // comboBoxRawSampleBits
+            // 
+            this.comboBoxRawSampleBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRawSampleBits.FormattingEnabled = true;
+            this.comboBoxRawSampleBits.Location = new System.Drawing.Point(99, 12);
+            this.comboBoxRawSampleBits.Name = "comboBoxRawSampleBits";
+            this.comboBoxRawSampleBits.Size = new System.Drawing.Size(66, 21);
+            this.comboBoxRawSampleBits.TabIndex = 14;
+            this.comboBoxRawSampleBits.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRawSampleBits_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(192, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Decimal";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 185);
+            this.ClientSize = new System.Drawing.Size(276, 213);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxRawSampleBits);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxStFormatDec);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxStFormatHex);
@@ -190,7 +224,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "TMP112 Utility";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -214,6 +248,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxStFormatHex;
         private System.Windows.Forms.TextBox textBoxStFormatDec;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxRawSampleBits;
+        private System.Windows.Forms.Label label7;
     }
 }
 
