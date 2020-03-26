@@ -59,9 +59,10 @@
             // textBoxDigitalHex
             // 
             this.textBoxDigitalHex.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxDigitalHex.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDigitalHex.Location = new System.Drawing.Point(99, 39);
             this.textBoxDigitalHex.Name = "textBoxDigitalHex";
-            this.textBoxDigitalHex.Size = new System.Drawing.Size(66, 20);
+            this.textBoxDigitalHex.Size = new System.Drawing.Size(66, 23);
             this.textBoxDigitalHex.TabIndex = 0;
             this.textBoxDigitalHex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxDigitalHex.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxDigitalHex_KeyUp);
@@ -69,9 +70,10 @@
             // textBoxDigitalBinary
             // 
             this.textBoxDigitalBinary.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxDigitalBinary.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDigitalBinary.Location = new System.Drawing.Point(99, 65);
             this.textBoxDigitalBinary.Name = "textBoxDigitalBinary";
-            this.textBoxDigitalBinary.Size = new System.Drawing.Size(162, 20);
+            this.textBoxDigitalBinary.Size = new System.Drawing.Size(162, 23);
             this.textBoxDigitalBinary.TabIndex = 2;
             this.textBoxDigitalBinary.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxDigitalBinary.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxDigitalBinary_KeyUp);
@@ -79,9 +81,10 @@
             // textBoxTempCelcius
             // 
             this.textBoxTempCelcius.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxTempCelcius.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTempCelcius.Location = new System.Drawing.Point(99, 91);
             this.textBoxTempCelcius.Name = "textBoxTempCelcius";
-            this.textBoxTempCelcius.Size = new System.Drawing.Size(162, 20);
+            this.textBoxTempCelcius.Size = new System.Drawing.Size(162, 23);
             this.textBoxTempCelcius.TabIndex = 3;
             this.textBoxTempCelcius.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxTempCelcius.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxTempCelcius_KeyUp);
@@ -116,9 +119,10 @@
             // textBoxTempFahrenheit
             // 
             this.textBoxTempFahrenheit.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxTempFahrenheit.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTempFahrenheit.Location = new System.Drawing.Point(99, 117);
             this.textBoxTempFahrenheit.Name = "textBoxTempFahrenheit";
-            this.textBoxTempFahrenheit.Size = new System.Drawing.Size(162, 20);
+            this.textBoxTempFahrenheit.Size = new System.Drawing.Size(162, 23);
             this.textBoxTempFahrenheit.TabIndex = 4;
             this.textBoxTempFahrenheit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxTempFahrenheit.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxTempFahrenheit_KeyUp);
@@ -136,9 +140,10 @@
             // textBoxDigitalDecimal
             // 
             this.textBoxDigitalDecimal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxDigitalDecimal.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDigitalDecimal.Location = new System.Drawing.Point(171, 39);
             this.textBoxDigitalDecimal.Name = "textBoxDigitalDecimal";
-            this.textBoxDigitalDecimal.Size = new System.Drawing.Size(90, 20);
+            this.textBoxDigitalDecimal.Size = new System.Drawing.Size(90, 23);
             this.textBoxDigitalDecimal.TabIndex = 1;
             this.textBoxDigitalDecimal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxDigitalDecimal.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxDigitalDecimal_KeyUp);
@@ -155,9 +160,10 @@
             // textBoxStFormatHex
             // 
             this.textBoxStFormatHex.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxStFormatHex.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxStFormatHex.Location = new System.Drawing.Point(99, 143);
             this.textBoxStFormatHex.Name = "textBoxStFormatHex";
-            this.textBoxStFormatHex.Size = new System.Drawing.Size(66, 20);
+            this.textBoxStFormatHex.Size = new System.Drawing.Size(66, 23);
             this.textBoxStFormatHex.TabIndex = 10;
             this.textBoxStFormatHex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxStFormatHex.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxStMemFormat_KeyUp);
@@ -165,9 +171,10 @@
             // textBoxStFormatDec
             // 
             this.textBoxStFormatDec.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxStFormatDec.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxStFormatDec.Location = new System.Drawing.Point(171, 143);
             this.textBoxStFormatDec.Name = "textBoxStFormatDec";
-            this.textBoxStFormatDec.Size = new System.Drawing.Size(90, 20);
+            this.textBoxStFormatDec.Size = new System.Drawing.Size(90, 23);
             this.textBoxStFormatDec.TabIndex = 12;
             this.textBoxStFormatDec.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxStFormatDec.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxStFormatDec_KeyUp);

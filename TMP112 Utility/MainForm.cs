@@ -37,7 +37,7 @@ namespace TMP112_Utility
         {
             try
             {
-                comboBoxRawSampleBits.Items.AddRange(Enum.GetNames(typeof(RawSampleBits)));
+                comboBoxRawSampleBits.Items.AddRange(Enum.GetNames(typeof(RawSampleType)));
                 if (comboBoxRawSampleBits.Items.Count > 0)
                     comboBoxRawSampleBits.SelectedIndex = 0;
 
@@ -75,6 +75,28 @@ namespace TMP112_Utility
             if (inputtype != InputType.TempFahrenheit) textBoxTempFahrenheit.Text = _fahrenheitValue.ToString("0.##");
             if (inputtype != InputType.StFormatHex) textBoxStFormatHex.Text = _memFormat12bitFx10.ToString("X3");
             if (inputtype != InputType.StFormatDec) textBoxStFormatDec.Text = Digital12BitTo16Bit(_memFormat12bitFx10).ToString();
+
+            var sampletype = (RawSampleType)comboBoxRawSampleBits.SelectedIndex;
+
+            // raw sample max 12/13 bit limit
+            var rawsamplehex = Convert.ToUInt16(textBoxDigitalHex.Text, 16);
+            if ((sampletype == RawSampleType.BITS_12 && rawsamplehex > 0x0FFF) ||
+                (sampletype == RawSampleType.BITS_13 && rawsamplehex > 0x1FFF))
+                labelException.Text = sampletype + " hex raw sample size limit exceed!";
+
+            var rawsampledec = Convert.ToInt16(textBoxDigitalDecimal.Text, 10);
+            if ((sampletype == RawSampleType.BITS_12 && rawsampledec > Math.Pow(2, 12)) ||
+                (sampletype == RawSampleType.BITS_13 && rawsampledec > Math.Pow(2, 13)))
+                labelException.Text = sampletype + " dec raw sample size limit exceed!";
+
+            // digital max 12 bit limit
+            if (Convert.ToUInt16(textBoxStFormatHex.Text, 16) > 0x0FFF)
+                labelException.Text = "Output hex format 12 bit size limit exceed!";
+
+            var output12bitdec = Convert.ToInt16(textBoxStFormatDec.Text, 10);
+            if ((output12bitdec >= Math.Pow(2, 11)) ||
+                (output12bitdec < Math.Pow(-2, 11)))
+                labelException.Text = "Output dec format 12 bit size limit exceed!";
         }
 
         private static double Tmp112DigitalToCelcius(short digitalValue, int samplebits)
@@ -109,9 +131,9 @@ namespace TMP112_Utility
                 Debug.WriteLine("InputType: " + inputtype);
 
                 int samplebits = 0;
-                var sampletype = (RawSampleBits)comboBoxRawSampleBits.SelectedIndex;
-                if (sampletype == RawSampleBits.BITS_12) samplebits = 12;
-                else if (sampletype == RawSampleBits.BITS_13) samplebits = 13;
+                var sampletype = (RawSampleType)comboBoxRawSampleBits.SelectedIndex;
+                if (sampletype == RawSampleType.BITS_12) samplebits = 12;
+                else if (sampletype == RawSampleType.BITS_13) samplebits = 13;
 
                 if (inputtype == InputType.DigitalHex)
                 {
@@ -214,7 +236,7 @@ namespace TMP112_Utility
         #endregion
     }
 
-    public enum RawSampleBits
+    public enum RawSampleType
     {
         BITS_12,
         BITS_13
